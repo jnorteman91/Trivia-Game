@@ -1,6 +1,25 @@
-body{
+body {
     background: url("../images/background3.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
+}
+
+header {
+    font-weight: bolder;
+    color: sienna;
+    background-color: tan;
+    margin:  0px 500px 0px 500px
+}
+
+.jumbotron {
+    text-align: center;
+    color: sienna;
+    background-color: tan;
+    margin: 0px 500px 0px 500px;
+}
+
+.answer {
+    background-color: bisque;
+    visibility: hidden;
 }
