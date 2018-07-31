@@ -5,37 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Trivia Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 vertical-center-row" id="gameBox">
-                <h1>Trivial Game</h1>
-                <br><br>
-                <div id="timer"></div>
-                <br><br>
-                <button type="button" class="btn-start">Start Game!</button>
-
-                <div id="questionBox"></div>
-                <br><br>
-                <div class="buttonBox">
-                    <button type="button" id="btn0" class="btn"><span id="choice0"></span></button>
-                    <button type="button" id="btn1" class="btn"><span id="choice1"></span></button>
-                    <button type="button" id="btn2" class="btn"><span id="choice2"></span></button>
-                    <button type="button" id="btn3" class="btn"><span id="choice3"></span></button>
-                </div>
-
-                <div class="col-md-8" id="progressBox">
-                    
-                </div>
-            </div>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Trivia Game</h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
         </div>
     </div>
 
+    <div class="card" style="width: 50rem;">
+        <div class="card-body">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>;
-    <script src="app.js"></script>
+            <div id="seconds timer"></div>
+            <br><br>
+            <a href="#" class="btn btn-primary" id="choice0"></a>
+            <a href="#" class="btn btn-primary" id="choice1"></a>
+            <a href="#" class="btn btn-primary" id="choice2"></a>
+            <a href="#" class="btn btn-primary" id="choice3"></a>
+            <br><br>
+            <div id="progressBox"></div>
+        </div>
+ 
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>;
+        <script src="app.js"></script>
+    </div>
 </body>
 </html>
