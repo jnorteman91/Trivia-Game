@@ -84,8 +84,8 @@ $(document).ready(function() {
     }
 
     var countDown = function () {
-        timerNum --;
-            $("#timerDiv").html("<h2> Time Remaining: " + timerNum + "</h2>");
+        time --;
+            $("#timerDiv").html("<h2> Time Remaining: " + time + "</h2>");
         if (timerNum === 0) {
             gameEnd();
         }
@@ -107,7 +107,26 @@ $(document).ready(function() {
         hide("#reset");
     };
 
-    
+    var gameEnd = function () {
+        stop();
+        screenClear();
+
+        write("#startTitle", "<h3> Game Over! </h3>");
+        $("scoreDiv").append("<h3> Results </h3>");
+        $("scoreDiv").append("<h3> Questions Answered " + ansNumber + "</h3>");
+        $("scoreDiv").append("<h3> Right Answers " + rightNumber + "</h3>");
+        $("scoreDiv").append("<h3> Wrong Answers " + wrongNumber + "</h3>");
+        show("#reset");
+    };
+
+    var newQuestion = function () {
+        $("#image").css("display", "none");
+        $("#questionDiv").css("display", "initial");
+        $("#ans")
+    };
+
+    $("start").on("click", start);
+    $("start").on("click", reset);
 
 
 })
