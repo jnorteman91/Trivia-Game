@@ -1,8 +1,10 @@
 body {
+    float: left;
     background: url("../images/background3.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
+    padding: 0px 83px 0px 83px;
 }
 
 *{
@@ -10,20 +12,19 @@ body {
 }
 
 header {
+    text-align: center;
     font-weight: bolder;
     color: sienna;
     background-color: tan;
-    margin:  0px 500px 0px 500px
 }
 
 .jumbotron {
     text-align: center;
     color: sienna;
     background-color: tan;
-    margin: 0px 500px 0px 500px;
 }
 
 .answer {
-    background-color: bisque;
+    background-color: tan;
     visibility: hidden;
 }

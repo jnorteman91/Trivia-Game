@@ -1,13 +1,5 @@
 $(document).ready(function() {
-
-    $("#image").css("display", "none");
-
-    var time = 15;
-    var rightNumber = 0;
-    var wrongNumber = 0;
-    var ansNumber = 0;
-    var answers = [];
-    var question = 0;
+    console.log("ready!");
 
     var trivia = [
         q1 = {
@@ -37,6 +29,13 @@ $(document).ready(function() {
         }
     ];
 
+    var time = 15;
+    var rightNumber = 0;
+    var wrongNumber = 0;
+    var ansNumber = 0;
+    var answers = [];
+    var questions = 0;
+
     var hide = function(elementId) {
         $(elementId).css("visibility", "hidden");
     };
@@ -51,8 +50,8 @@ $(document).ready(function() {
 
     var writeQuestion = function () {
         if (question <= 4) {
-            $("#questionDiv").html("<h2>" + trivia[question].question + "</h2>");
-            answers = trivia[question].multipleChoice;
+            $("#questionDiv").html("<h2>" + trivia[questions].question + "</h2>");
+            answers = trivia[questions].multipleChoice;
             show(".answers");
             for (var i = 0; i < answers.length; i++) {
                 $("#answers + i").html("<h3>" + answers[i] + "</h3>"); 
@@ -99,7 +98,7 @@ $(document).ready(function() {
         stop();
         timerNum = 15;
         answers = [];
-        question = 0;
+        questions = 0;
         screenClear();
         $("#timerDiv").empty();
         write("#startTitle", "Press Start!");
@@ -120,10 +119,41 @@ $(document).ready(function() {
     };
 
     var newQuestion = function () {
-        $("#image").css("display", "none");
+        
         $("#questionDiv").css("display", "initial");
-        $("#ans")
+        $("#answerDiv").css("display", "initial");
+        $("#message").css("display", "none");
+        clearInterval();
+        timerNum = 15;
     };
+
+    $(".answer").click(function (){
+        var clicked = $(this);
+        var value = clicked.attr("value");
+        var rightAnswer = trivia[questions].correct;
+
+        if (value === rightAnswer) {
+            $("#questionDiv").empty();
+            answerClear();
+            $("#answerDiv").css("display", "none");
+            $("#questionDiv").css("display", "none");
+            $("#message").css("display", "initial");
+            $("#message").html("<h3> choice" + answers[value] + "</h3><br><h3> Correct Answer " + answer[correct] + "</h3>");
+            setInterval(nextQuestion, 5 * 1000);
+            ansNumber ++;
+            rightNumber ++;
+            question ++;
+            writeQuestion();
+        } else {
+            ansNumber ++;
+            wrongNumber ++;
+            question ++;
+            timerNum = 15;
+            $("#questionDiv").empty();
+            answerClear();
+            writeQuestion();
+        }
+    });
 
     $("start").on("click", start);
     $("start").on("click", reset);
