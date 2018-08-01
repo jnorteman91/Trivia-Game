@@ -120,9 +120,9 @@ $(document).ready(function() {
 
     var newQuestion = function () {
         
-        $("#questionDiv").css("display", "initial");
-        $("#answerDiv").css("display", "initial");
-        $("#message").css("display", "none");
+        $("#questionDiv").html("display", "initial");
+        $("#answerDiv").html("display", "initial");
+        $("#message").html("display", "none");
         clearInterval();
         timerNum = 15;
     };
@@ -135,9 +135,9 @@ $(document).ready(function() {
         if (value === rightAnswer) {
             $("#questionDiv").empty();
             answerClear();
-            $("#answerDiv").css("display", "none");
-            $("#questionDiv").css("display", "none");
-            $("#message").css("display", "initial");
+            $("#answerDiv").html("display", "none");
+            $("#questionDiv").html("display", "none");
+            $("#message").html("display", "initial");
             $("#message").html("<h3> choice" + answers[value] + "</h3><br><h3> Correct Answer " + answer[correct] + "</h3>");
             setInterval(nextQuestion, 5 * 1000);
             ansNumber ++;
