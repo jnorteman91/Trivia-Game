@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+*{
+    box-sizing: border-box;
+}
+
 header {
     font-weight: bolder;
     color: sienna;

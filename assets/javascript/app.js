@@ -45,8 +45,8 @@ $(document).ready(function() {
         $(elementId).css("visibility", "visible");
     };
 
-    var write = function(elementId, this) {
-        $(elementId).html("<h3>" + this + "</h3>")
+    var write = function(elementId, something) {
+        $(elementId).html("<h3>" + something + "</h3>")
     };
 
     var writeQuestion = function () {
@@ -82,6 +82,30 @@ $(document).ready(function() {
         $("#score").empty();
         answerClear();
     }
+
+    var countDown = function () {
+        timerNum --;
+            $("#timerDiv").html("<h2> Time Remaining: " + timerNum + "</h2>");
+        if (timerNum === 0) {
+            gameEnd();
+        }
+    };
+
+    var stop = function () {
+        clearInterval(counter);
+    };
+
+    var reset = function () {
+        stop();
+        timerNum = 15;
+        answers = [];
+        question = 0;
+        screenClear();
+        $("#timerDiv").empty();
+        write("#startTitle", "Press Start!");
+        show("#start");
+        hide("#reset");
+    };
 
     
 
