@@ -5,7 +5,7 @@ $(document).ready(function() {
         q1 = {
             question: "An American skate company founded by George Powell?",
             correct: "2",
-            multipleChoice: ["Birdhouse", "Powell Peralta","Zero","Creature"], 
+            multipleChoice: ["Birdhouse", "Powell Peralta", "Zero", "Creature"], 
         },
         q2 = {
             question: "A Canadian who skated for Flip, Alien Workshop, Birdhouse, and Circa?",
@@ -34,7 +34,7 @@ $(document).ready(function() {
     var wrongNumber = 0;
     var ansNumber = 0;
     var answers = [];
-    var questions = 0;
+    var question = 0;
 
     var hide = function(elementId) {
         $(elementId).css("visibility", "hidden");
@@ -50,11 +50,16 @@ $(document).ready(function() {
 
     var writeQuestion = function () {
         if (question <= 4) {
-            $("#questionDiv").html("<h2>" + trivia[questions].question + "</h2>");
-            answers = trivia[questions].multipleChoice;
-            show(".answers");
+            $("#questionDiv").html("<h2>" + trivia[question].question + "</h2>");
+            answers = trivia[question].multipleChoice;
+            show("#answerDiv");
+            console.log("hi there")
             for (var i = 0; i < answers.length; i++) {
-                $("#answers + i").html("<h3>" + answers[i] + "</h3>"); 
+                const string="#answer" + i;
+
+
+                $(string).html("<h3>" + answers[i] + "</h3>"); 
+                console.log(string)
             }
         } else {
             gameEnd();
@@ -65,27 +70,32 @@ $(document).ready(function() {
         for (var i = 0; i < 4; i++) {
             $("#answer" + i).html("");
         }
-        hide(".answer");
+        hide("#answer");
     };
 
     var startGame = function () {
         counter = setInterval(countDown, 1000);
-            $("#startTitle").empty();
-        hide("#start");
+        $(".startButton").hide();
+        hide(".start");
         writeQuestion();
+        console.log("this is to start");
     };
 
     var screenClear = function () {
         $("#startTitle").empty();
         $("#questionDiv").empty();
         $("#score").empty();
-        answerClear();
+       
     }
 
     var countDown = function () {
         time --;
             $("#timerDiv").html("<h2> Time Remaining: " + time + "</h2>");
-        if (timerNum === 0) {
+        if (time === 0 && question !=3) {
+            // move on to next questions
+            // resets timer
+
+        } else if (time === 0 && question ==3) {
             gameEnd();
         }
     };
@@ -96,26 +106,28 @@ $(document).ready(function() {
 
     var reset = function () {
         stop();
-        timerNum = 15;
+        time = 15;
         answers = [];
-        questions = 0;
+        question = 0;
         screenClear();
+        clearAnswer();
+        newQuestion();
         $("#timerDiv").empty();
-        write("#startTitle", "Press Start!");
-        show("#start");
-        hide("#reset");
+        write("#start", "Press Start!");
+        show(".startButton");
+        hide(".resetButton");
     };
 
     var gameEnd = function () {
         stop();
         screenClear();
 
-        write("#startTitle", "<h3> Game Over! </h3>");
+        write("#start", "<h3> Game Over! </h3>");
         $("scoreDiv").append("<h3> Results </h3>");
         $("scoreDiv").append("<h3> Questions Answered " + ansNumber + "</h3>");
         $("scoreDiv").append("<h3> Right Answers " + rightNumber + "</h3>");
         $("scoreDiv").append("<h3> Wrong Answers " + wrongNumber + "</h3>");
-        show("#reset");
+        show(".resetButton");
     };
 
     var newQuestion = function () {
@@ -124,14 +136,18 @@ $(document).ready(function() {
         $("#answerDiv").html("display", "initial");
         $("#message").html("display", "none");
         clearInterval();
-        timerNum = 15;
+        time = 15;
     };
 
-    $(".answer").click(function (){
+   
+    
+    
+    var ansClick = function(){
+    
         var clicked = $(this);
         var value = clicked.attr("value");
         var rightAnswer = trivia[questions].correct;
-
+        console.log(value,rightAnswer)
         if (value === rightAnswer) {
             $("#questionDiv").empty();
             answerClear();
@@ -144,6 +160,7 @@ $(document).ready(function() {
             rightNumber ++;
             question ++;
             writeQuestion();
+            newQuestion();
         } else {
             ansNumber ++;
             wrongNumber ++;
@@ -153,10 +170,10 @@ $(document).ready(function() {
             answerClear();
             writeQuestion();
         }
-    });
+    };
+    $(".answer").on("click",ansClick );
 
-    $("start").on("click", start);
-    $("start").on("click", reset);
-
+    $(".startButton").on("click", startGame);
+    $(".resetButton").on("click", reset);
 
 })
